@@ -1,24 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+/* eslint-disable no-unused-vars */
+import "./App.css";
+import { Container, Row, Col, Form, Button, Card } from "react-bootstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
+import Login from "./Login";
+import Dashboard from "./Dashboard";
+import { useState, useEffect } from "react";
 
 function App() {
+  const [isAuth, setIsAuth] = useState(false);
+
+  useEffect(() => {
+    let flag = localStorage.getItem("react-music-site-login-flag");
+    if(flag){
+      setIsAuth(flag);
+    }
+  }, [])
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Container fluid>
+        {isAuth && isAuth ? <Dashboard /> :  <Login setIsAuth={setIsAuth}/>}
+      </Container>
+    </>
   );
 }
 
