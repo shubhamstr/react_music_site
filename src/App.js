@@ -1,7 +1,6 @@
 /* eslint-disable no-unused-vars */
 import "./App.css";
 import { Container, Row, Col, Form, Button, Card } from "react-bootstrap";
-import "bootstrap/dist/css/bootstrap.min.css";
 import Login from "./Login";
 import Dashboard from "./Dashboard";
 import { useState, useEffect } from "react";
