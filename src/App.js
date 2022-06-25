@@ -1,25 +1,17 @@
-/* eslint-disable no-unused-vars */
 import "./App.css";
-import { Container, Row, Col, Form, Button, Card } from "react-bootstrap";
 import Login from "./Login";
 import Dashboard from "./Dashboard";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 function App() {
   const [isAuth, setIsAuth] = useState(false);
+  let flag = localStorage.getItem("react-music-site-login-flag");
+  if (flag) {
+    setIsAuth(flag);
+  }
 
-  useEffect(() => {
-    let flag = localStorage.getItem("react-music-site-login-flag");
-    if(flag){
-      setIsAuth(flag);
-    }
-  }, [])
   return (
-    <>
-      <Container fluid>
-        {isAuth && isAuth ? <Dashboard /> :  <Login setIsAuth={setIsAuth}/>}
-      </Container>
-    </>
+    <>{isAuth && isAuth ? <Dashboard /> : <Login setIsAuth={setIsAuth} />}</>
   );
 }
 
