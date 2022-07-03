@@ -18,9 +18,7 @@ const Login = (props) => {
     }
   };
 
-  axios.create({
-    baseURL: "http://localhost:3600",
-  });
+  axios.defaults.baseURL = "http://localhost:3600";
 
   const register = async (e) => {
     e.preventDefault();
@@ -62,7 +60,7 @@ const Login = (props) => {
             </div>
           ) : (
             <div className="card p-5 bg-info">
-              <p className="text-danger text-center">Error: {errMsg}</p>
+              <p className="text-danger text-center">{errMsg}</p>
               <h2 className="text-center">Register</h2>
               <hr />
               <form>
