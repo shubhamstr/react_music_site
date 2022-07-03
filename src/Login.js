@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React from "react";
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 const Login = (props) => {
   const [email, setEmail] = useState("");
@@ -71,6 +72,12 @@ const Login = (props) => {
                 >
                   Login
                 </button>
+                <p className="mt-3 mb-0">Don't have an account</p>
+                <p>
+                  <Link to="/" className="text-white">
+                    Click to Register
+                  </Link>
+                </p>
               </div>
             </form>
           </div>

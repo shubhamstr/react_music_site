@@ -51,7 +51,9 @@ const Login = (props) => {
               <p className="text-white">Success!</p>
               <div className="text-center">
                 <button type="button" className="btn btn-primary">
-                  <Link to="/login">Login</Link>
+                  <Link to="/login" className="text-white">
+                    Login
+                  </Link>
                 </button>
               </div>
             </div>
@@ -97,6 +99,12 @@ const Login = (props) => {
                   >
                     Register
                   </button>
+                  <p className="mt-3 mb-0">Already have an account</p>
+                  <p>
+                    <Link to="/login" className="text-white">
+                      Click to Login
+                    </Link>
+                  </p>
                 </div>
               </form>
             </div>
