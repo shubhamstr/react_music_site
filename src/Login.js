@@ -1,14 +1,17 @@
 /* eslint-disable no-unused-vars */
 import React from "react";
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import axios from "axios";
+import { Link, useNavigate } from "react-router-dom";
 
+const LOGIN_URL = "./login";
+axios.defaults.baseURL = "http://localhost:3600";
 const Login = (props) => {
+  const history = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const [errMsg, setErrMsg] = useState("");
-  const [success, setSuccess] = useState(false);
 
   const onchange = (e) => {
     if (e.target.name === "email") {
@@ -18,13 +21,26 @@ const Login = (props) => {
     }
   };
 
-  const login = () => {
-    // if (email === "user1@gmail.com" && password === "user1") {
-    //   props.setIsAuth(true);
-    //   localStorage.setItem("react-music-site-login-flag", true);
-    // } else {
-    //   alert("Email & Password is wrong");
-    // }
+  const login = async (e) => {
+    e.preventDefault();
+    try {
+      const resp = await axios.post(LOGIN_URL, {
+        email: email,
+        password: password,
+      });
+      console.log(resp.data);
+      const { errMsg, successMsg } = resp.data;
+      if (successMsg) {
+        props.setIsAuth(true);
+        history("/dashboard");
+      } else {
+        setErrMsg(errMsg);
+      }
+    } catch (err) {
+      if (!err?.resp) {
+        setErrMsg("No Server Response");
+      }
+    }
   };
 
   return (

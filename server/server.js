@@ -26,7 +26,28 @@ app.post('/register', async (req, res) => {
   } catch (error) {
     res.send({ errorMsg: error });
   }
-})
+});
+
+app.post('/login', async (req, res) => {
+  // console.log(req.body);
+  try {
+    let result = false;
+    users.map((val) => {
+      const { email, password } = val;
+      if (email === req.body.email && password === req.body.password){
+        result = true;
+      }
+      return '';
+    });
+    if (result) {
+      res.status(201).send({ successMsg: `Welcome ${req.body.email}` });
+    } else {
+      res.send({ errMsg: `User Not Found` });
+    }
+  } catch (error) {
+    res.send({ errorMsg: error });
+  }
+});
 
 app.listen(port, () => {
   console.log(`Example app listening on port http://localhost:${port}`)

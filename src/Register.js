@@ -4,11 +4,14 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 
 const REGISTER_URL = "./register";
+axios.defaults.baseURL = "http://localhost:3600";
+
 const Login = (props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const [errMsg, setErrMsg] = useState("");
+  const [successMsg, setSuccessMsg] = useState("");
   const [success, setSuccess] = useState(false);
 
   const onchange = (e) => {
@@ -18,8 +21,6 @@ const Login = (props) => {
       setPassword(e.target.value);
     }
   };
-
-  axios.defaults.baseURL = "http://localhost:3600";
 
   const register = async (e) => {
     e.preventDefault();
@@ -32,6 +33,7 @@ const Login = (props) => {
       const { errMsg, successMsg } = resp.data;
       if (successMsg) {
         setSuccess(true);
+        setSuccessMsg(successMsg);
       } else {
         setErrMsg(errMsg);
       }
@@ -48,7 +50,7 @@ const Login = (props) => {
         <div className="col-md-4 offset-md-4 mt-5">
           {success ? (
             <div className="card p-5 bg-info">
-              <p className="text-white">Success!</p>
+              <p className="text-white text-center">{successMsg}!</p>
               <div className="text-center">
                 <button type="button" className="btn btn-primary">
                   <Link to="/login" className="text-white">
