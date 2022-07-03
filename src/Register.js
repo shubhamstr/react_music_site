@@ -1,7 +1,7 @@
 import React from "react";
 import { Container, Row, Col, Form, Button, Card } from "react-bootstrap";
 import { useState } from "react";
-import axios from "./api/axios";
+import axios from "../api/axios";
 
 const REGISTER_URL = "./register";
 const Login = (props) => {
@@ -18,6 +18,10 @@ const Login = (props) => {
       setPassword(e.target.value);
     }
   };
+
+  axios.create({
+    baseURL: "http://localhost:3600",
+  });
 
   const login = async (e) => {
     e.preventDefault();
