@@ -1,5 +1,4 @@
 import React from "react";
-import { Container, Row, Col, Form, Button, Card } from "react-bootstrap";
 import { useState } from "react";
 import axios from "axios";
 
@@ -23,7 +22,7 @@ const Login = (props) => {
     baseURL: "http://localhost:3600",
   });
 
-  const login = async (e) => {
+  const register = async (e) => {
     e.preventDefault();
     try {
       const resp = axios.post(
@@ -43,68 +42,73 @@ const Login = (props) => {
       }
     } catch (err) {
       if (!err?.resp) {
-        setErrMsg('No Server Response');
+        setErrMsg("No Server Response");
       }
     }
   };
 
   return (
-    <Container fluid>
-      <Row>
-        <Col xs="4" className="offset-md-4 mt-5">
+    <div className="container">
+      <div className="row">
+        <div className="col-md-4 offset-md-4 mt-5">
           {success ? (
-            <Card className="p-5 bg-info">
+            <div className="card p-5 bg-info">
               <p>Success!</p>
               <div className="text-center">
-                <Button variant="primary" type="button" onClick={login}>
+                <button type="submit" class="btn btn-primary">
                   Login
-                </Button>
+                </button>
               </div>
-            </Card>
+            </div>
           ) : (
-            <Card className="p-5 bg-info">
+            <div className="card p-5 bg-info">
               <p>{errMsg}</p>
               <h2 className="text-center">Register</h2>
               <hr />
-              <Form>
-                <Form.Group className="mb-3" controlId="formBasicEmail">
-                  <Form.Label>Email address</Form.Label>
-                  <Form.Control
+              <form>
+                <div class="mb-3">
+                  <label for="email" class="form-label">
+                    Email address
+                  </label>
+                  <input
                     type="email"
-                    placeholder="Enter email"
+                    onChange={onchange}
+                    class="form-control"
+                    id="email"
                     name="email"
-                    defaultValue={email}
-                    onChange={onchange}
+                    aria-describedby="emailHelp"
                   />
-                  <Form.Text className="text-muted">
+                  <div id="emailHelp" class="form-text">
                     We'll never share your email with anyone else.
-                  </Form.Text>
-                </Form.Group>
-
-                <Form.Group className="mb-3" controlId="formBasicPassword">
-                  <Form.Label>Password</Form.Label>
-                  <Form.Control
-                    type="password"
-                    placeholder="Password"
-                    name="password"
-                    defaultValue={password}
-                    onChange={onchange}
-                  />
-                </Form.Group>
-                {/* <Form.Group className="mb-3" controlId="formBasicCheckbox">
-              <Form.Check type="checkbox" label="Check me out" />
-            </Form.Group> */}
-                <div className="text-center">
-                  <Button variant="primary" type="button" onClick={login}>
-                    Login
-                  </Button>
+                  </div>
                 </div>
-              </Form>
-            </Card>
+                <div class="mb-3">
+                  <label for="password" class="form-label">
+                    Password
+                  </label>
+                  <input
+                    type="password"
+                    onChange={onchange}
+                    class="form-control"
+                    id="password"
+                    name="password"
+                  />
+                </div>
+                <div className="text-center">
+                  <button
+                    type="button"
+                    class="btn btn-primary"
+                    onClick={register}
+                  >
+                    Register
+                  </button>
+                </div>
+              </form>
+            </div>
           )}
-        </Col>
-      </Row>
-    </Container>
+        </div>
+      </div>
+    </div>
   );
 };
 
