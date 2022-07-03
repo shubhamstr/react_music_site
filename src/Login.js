@@ -29,8 +29,9 @@ const Login = (props) => {
         password: password,
       });
       console.log(resp.data);
-      const { errMsg, successMsg } = resp.data;
+      const { errMsg, successMsg, data } = resp.data;
       if (successMsg) {
+        localStorage.setItem("rest-music-site", data);
         props.setIsAuth(true);
         history("/dashboard");
       } else {

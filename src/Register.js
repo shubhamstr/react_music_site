@@ -7,6 +7,7 @@ const REGISTER_URL = "./register";
 axios.defaults.baseURL = "http://localhost:3600";
 
 const Login = (props) => {
+  const [userName, setUserName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -19,6 +20,8 @@ const Login = (props) => {
       setEmail(e.target.value);
     } else if (e.target.name === "password") {
       setPassword(e.target.value);
+    } else if (e.target.name === "userName") {
+      setUserName(e.target.value);
     }
   };
 
@@ -28,6 +31,7 @@ const Login = (props) => {
       const resp = await axios.post(REGISTER_URL, {
         email: email,
         password: password,
+        userName: userName,
       });
       console.log(resp.data);
       const { errMsg, successMsg } = resp.data;
@@ -52,11 +56,9 @@ const Login = (props) => {
             <div className="card p-5 bg-info">
               <p className="text-white text-center">{successMsg}!</p>
               <div className="text-center">
-                <button type="button" className="btn btn-primary">
-                  <Link to="/login" className="text-white">
-                    Login
-                  </Link>
-                </button>
+                <Link to="/login" className="btn btn-primary text-white">
+                  Login
+                </Link>
               </div>
             </div>
           ) : (
@@ -65,6 +67,19 @@ const Login = (props) => {
               <h2 className="text-center">Register</h2>
               <hr />
               <form>
+                <div className="mb-3">
+                  <label htmlFor="userName" className="form-label">
+                    userName
+                  </label>
+                  <input
+                    type="text"
+                    onChange={onchange}
+                    className="form-control"
+                    id="userName"
+                    name="userName"
+                    aria-describedby="userNameHelp"
+                  />
+                </div>
                 <div className="mb-3">
                   <label htmlFor="email" className="form-label">
                     Email address

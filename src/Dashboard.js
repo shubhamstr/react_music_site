@@ -1,9 +1,22 @@
 /* eslint-disable no-unused-vars */
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "./layout/Navbar";
 
-const Dashboard = () => {
-  return <h3>Dashboard</h3>;
+const Dashboard = (props) => {
+  const [user, setUser] = useState("")
+
+  useEffect(() => {
+    const userName = localStorage.getItem("rest-music-site");
+    if (userName) {
+      setUser(userName);
+    }
+  }, [])
+  
+  return (
+    <div className="container">
+      <Navbar isAuth={props.isAuth} user={user} />
+    </div>
+  );
 };
 
 export default Dashboard;

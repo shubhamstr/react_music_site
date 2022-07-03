@@ -20,7 +20,7 @@ app.get('/', (req, res) => {
 app.post('/register', async (req, res) => {
   // console.log(req.body);
   try {
-    const user = { email: req.body.email, password: req.body.password };
+    const user = { email: req.body.email, password: req.body.password, userName: req.body.userName };
     users.push(user);
     res.status(201).send({ successMsg: 'User Registered Sucessfully' });
   } catch (error) {
@@ -32,15 +32,17 @@ app.post('/login', async (req, res) => {
   // console.log(req.body);
   try {
     let result = false;
+    let userNameLogin = "";
     users.map((val) => {
-      const { email, password } = val;
+      const { email, password, userName } = val;
       if (email === req.body.email && password === req.body.password){
         result = true;
+        userNameLogin = userName;
       }
       return '';
     });
     if (result) {
-      res.status(201).send({ successMsg: `Welcome ${req.body.email}` });
+      res.status(201).send({ successMsg: `Welcome ${req.body.email}`, data: userNameLogin });
     } else {
       res.send({ errMsg: `User Not Found` });
     }
