@@ -23,7 +23,7 @@ const Login = (props) => {
   const register = async (e) => {
     e.preventDefault();
     try {
-      const resp = axios.post(REGISTER_URL, { email, password });
+      const resp = await axios.post(REGISTER_URL, { email: email, password: password });
       console.log(resp.data);
       const { errMsg, successMsg } = resp.data;
       if (successMsg) {
@@ -46,7 +46,7 @@ const Login = (props) => {
             <div className="card p-5 bg-info">
               <p className="text-white">Success!</p>
               <div className="text-center">
-                <button type="submit" class="btn btn-primary">
+                <button type="button" className="btn btn-primary">
                   Login
                 </button>
               </div>
