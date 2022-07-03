@@ -53,7 +53,7 @@ const Login = (props) => {
         <div className="col-md-4 offset-md-4 mt-5">
           {success ? (
             <div className="card p-5 bg-info">
-              <p>Success!</p>
+              <p className="text-white">Success!</p>
               <div className="text-center">
                 <button type="submit" class="btn btn-primary">
                   Login
@@ -62,7 +62,7 @@ const Login = (props) => {
             </div>
           ) : (
             <div className="card p-5 bg-info">
-              <p>{errMsg}</p>
+              <p className="text-danger text-center">Error: {errMsg}</p>
               <h2 className="text-center">Register</h2>
               <hr />
               <form>
