@@ -1,7 +1,7 @@
 import React from "react";
 import { Container, Row, Col, Form, Button, Card } from "react-bootstrap";
 import { useState } from "react";
-import axios from "../api/axios";
+import axios from "axios";
 
 const REGISTER_URL = "./register";
 const Login = (props) => {
