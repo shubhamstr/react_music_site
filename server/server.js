@@ -3,7 +3,7 @@ var cors = require('cors');
 var app = express();
 
 app.use(cors({
-  origin: '*'
+  origin: 'http://127.0.0.1:3500',
 }));
 
 const port = 3600

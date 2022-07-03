@@ -23,14 +23,7 @@ const Login = (props) => {
   const register = async (e) => {
     e.preventDefault();
     try {
-      const resp = axios.post(
-        REGISTER_URL,
-        JSON.stringify({ email, password }),
-        {
-          headers: { "Content-Type": "application/json" },
-          withCredentials: true,
-        }
-      );
+      const resp = axios.post(REGISTER_URL, { email, password });
       console.log(resp.data);
       const { errMsg, successMsg } = resp.data;
       if (successMsg) {
@@ -64,30 +57,30 @@ const Login = (props) => {
               <h2 className="text-center">Register</h2>
               <hr />
               <form>
-                <div class="mb-3">
-                  <label for="email" class="form-label">
+                <div className="mb-3">
+                  <label htmlFor="email" className="form-label">
                     Email address
                   </label>
                   <input
                     type="email"
                     onChange={onchange}
-                    class="form-control"
+                    className="form-control"
                     id="email"
                     name="email"
                     aria-describedby="emailHelp"
                   />
-                  <div id="emailHelp" class="form-text">
+                  <div id="emailHelp" className="form-text">
                     We'll never share your email with anyone else.
                   </div>
                 </div>
-                <div class="mb-3">
-                  <label for="password" class="form-label">
+                <div className="mb-3">
+                  <label htmlFor="password" className="form-label">
                     Password
                   </label>
                   <input
                     type="password"
                     onChange={onchange}
-                    class="form-control"
+                    className="form-control"
                     id="password"
                     name="password"
                   />
@@ -95,7 +88,7 @@ const Login = (props) => {
                 <div className="text-center">
                   <button
                     type="button"
-                    class="btn btn-primary"
+                    className="btn btn-primary"
                     onClick={register}
                   >
                     Register
