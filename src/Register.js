@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const REGISTER_URL = "./register";
 const Login = (props) => {
@@ -23,7 +24,10 @@ const Login = (props) => {
   const register = async (e) => {
     e.preventDefault();
     try {
-      const resp = await axios.post(REGISTER_URL, { email: email, password: password });
+      const resp = await axios.post(REGISTER_URL, {
+        email: email,
+        password: password,
+      });
       console.log(resp.data);
       const { errMsg, successMsg } = resp.data;
       if (successMsg) {
@@ -47,7 +51,7 @@ const Login = (props) => {
               <p className="text-white">Success!</p>
               <div className="text-center">
                 <button type="button" className="btn btn-primary">
-                  Login
+                  <Link to="/login">Login</Link>
                 </button>
               </div>
             </div>

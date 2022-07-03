@@ -1,16 +1,13 @@
+/* eslint-disable no-unused-vars */
 import React from "react";
-import { Container, Row, Col, Form, Button, Card } from "react-bootstrap";
-import { useState, useRef, useEffect } from "react";
+import { useState, useEffect } from "react";
 
 const Login = (props) => {
-  const userRef = useRef();
-  const errRef = useRef();
-
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
   const [errMsg, setErrMsg] = useState("");
-  const [successMsg, setSuccessMsg] = useState(false);
+  const [success, setSuccess] = useState(false);
 
   const onchange = (e) => {
     if (e.target.name === "email") {
@@ -29,58 +26,57 @@ const Login = (props) => {
     // }
   };
 
-  useEffect(() => {
-    userRef.current.focus();
-  }, [email, password])
-  
-
   return (
-    <Container fluid>
-      <Row>
-        <Col xs="4" className="offset-md-4 mt-5">
-          <Card className="p-5 bg-info">
-            <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} area-live="assertive">{errMsg}</p>
+    <div className="container">
+      <div className="row">
+        <div className="col-md-4 offset-md-4 mt-5">
+          <div className="card p-5 bg-info">
+            <p className="text-danger text-center">{errMsg}</p>
             <h2 className="text-center">Login</h2>
             <hr />
-            <Form>
-              <Form.Group className="mb-3" controlId="formBasicEmail">
-                <Form.Label>Email address</Form.Label>
-                <Form.Control
+            <form>
+              <div className="mb-3">
+                <label htmlFor="email" className="form-label">
+                  Email address
+                </label>
+                <input
                   type="email"
-                  placeholder="Enter email"
+                  onChange={onchange}
+                  className="form-control"
+                  id="email"
                   name="email"
-                  ref={userRef}
-                  defaultValue={email}
-                  onChange={onchange}
+                  aria-describedby="emailHelp"
                 />
-                <Form.Text className="text-muted">
+                <div id="emailHelp" className="form-text">
                   We'll never share your email with anyone else.
-                </Form.Text>
-              </Form.Group>
-
-              <Form.Group className="mb-3" controlId="formBasicPassword">
-                <Form.Label>Password</Form.Label>
-                <Form.Control
-                  type="password"
-                  placeholder="Password"
-                  name="password"
-                  defaultValue={password}
-                  onChange={onchange}
-                />
-              </Form.Group>
-              {/* <Form.Group className="mb-3" controlId="formBasicCheckbox">
-              <Form.Check type="checkbox" label="Check me out" />
-            </Form.Group> */}
-              <div className="text-center">
-                <Button variant="primary" type="button" onClick={login}>
-                  Login
-                </Button>
+                </div>
               </div>
-            </Form>
-          </Card>
-        </Col>
-      </Row>
-    </Container>
+              <div className="mb-3">
+                <label htmlFor="password" className="form-label">
+                  Password
+                </label>
+                <input
+                  type="password"
+                  onChange={onchange}
+                  className="form-control"
+                  id="password"
+                  name="password"
+                />
+              </div>
+              <div className="text-center">
+                <button
+                  type="button"
+                  className="btn btn-primary"
+                  onClick={login}
+                >
+                  Login
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 };
 
