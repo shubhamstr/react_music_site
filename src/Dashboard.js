@@ -24,7 +24,7 @@ const Dashboard = (props) => {
   
   return (
     <div className="container">
-      <Navbar isAuth={props.isAuth} user={user} />
+      <Navbar isAuth={props.isAuth} user={user} history={history} />
     </div>
   );
 };
