@@ -3,6 +3,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const LOGIN_URL = "./login";
 axios.defaults.baseURL = "http://localhost:3600";
@@ -23,37 +24,37 @@ const Login = (props) => {
 
   const login = async (e) => {
     e.preventDefault();
-    try {
-      const resp = await axios.post(LOGIN_URL, {
-        email: email,
-        password: password,
+    const resp = await axios.post(LOGIN_URL, {
+      email: email,
+      password: password,
+    });
+    console.log(resp);
+    console.log(resp.data);
+    const { errorMsg, successMsg, data } = resp.data;
+    if (successMsg) {
+      localStorage.setItem("rest-music-site", data);
+      props.setIsAuth(true);
+      history("/dashboard");
+    } else {
+      setErrMsg(errorMsg);
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: errorMsg,
       });
-      console.log(resp.data);
-      const { errMsg, successMsg, data } = resp.data;
-      if (successMsg) {
-        localStorage.setItem("rest-music-site", data);
-        props.setIsAuth(true);
-        history("/dashboard");
-      } else {
-        setErrMsg(errMsg);
-      }
-    } catch (err) {
-      if (!err?.resp) {
-        setErrMsg("No Server Response");
-      }
     }
   };
 
-  useEffect(()=>{
+  useEffect(() => {
     const token = localStorage.getItem("rest-music-site");
-    if(token){
+    if (token) {
       props.setIsAuth(true);
       history("/dashboard");
-    }else{
+    } else {
       // localStorage.removeItem("rest-music-site");
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  },[]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div className="container">
@@ -102,7 +103,7 @@ const Login = (props) => {
                 </button>
                 <p className="mt-3 mb-0">Don't have an account</p>
                 <p>
-                  <Link to="/" className="text-white">
+                  <Link to="/register" className="text-white">
                     Click to Register
                   </Link>
                 </p>

@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 const REGISTER_URL = "./register";
 axios.defaults.baseURL = "http://localhost:3600";
 
-const Login = (props) => {
+const Register = (props) => {
   const [userName, setUserName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -132,4 +132,4 @@ const Login = (props) => {
   );
 };
 
-export default Login;
+export default Register;

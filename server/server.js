@@ -29,7 +29,7 @@ app.post('/register', async (req, res) => {
   try {
     const {error} = validateRegister(req.body);
     if (error) {
-        return res.status(400).send({errorMsg: error.details[0].message});
+        return res.send({errorMsg: error.details[0].message});
     }
 
     const salt = await bcrypt.genSalt(Number(process.env.SALT));
@@ -48,17 +48,17 @@ app.post('/login', async (req, res) => {
   try {
     const {error} = validateLogin(req.body);
     if (error) {
-        return res.status(400).send({errorMsg: error.details[0].message});
+        return res.send({errorMsg: error.details[0].message});
     }
 
     const user = await User.findOne({email: req.body.email});
     if (!user) {
-        return res.status(401).send({errorMsg: "Invalid Email or Password"})
+        return res.send({errorMsg: "Invalid Email or Password"})
     }
 
     const validPassword = await bcrypt.compare(req.body.password, user.password);
     if (!validPassword) {
-        return res.status(401).send({errorMsg: "Invalid Email or Password"})
+        return res.send({errorMsg: "Invalid Email or Password"})
     }
 
     const token = user.generateAuthToken();
