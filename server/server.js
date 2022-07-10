@@ -1,16 +1,23 @@
+require('dotenv').config();
+
 const express = require('express');
 var cors = require('cors');
 var app = express();
+const {User, validateRegister, validateLogin} = require('./model/user');
+const bcrypt = require('bcrypt');
 
+const connection = require('./db');
+
+// databse connection
+connection();
+
+// middlewares 
 app.use(express.json());
-
 app.use(cors({
   origin: 'http://localhost:3500',
 }));
 
-const port = 3600
-
-const users = [];
+const port = process.env.PORT || 3600;
 
 app.get('/', (req, res) => {
   res.send(`Example app listening on port http://localhost:${port}`)
@@ -20,32 +27,42 @@ app.get('/', (req, res) => {
 app.post('/register', async (req, res) => {
   // console.log(req.body);
   try {
-    const user = { email: req.body.email, password: req.body.password, userName: req.body.userName };
-    users.push(user);
-    res.status(201).send({ successMsg: 'User Registered Sucessfully' });
+    const {error} = validateRegister(req.body);
+    if (error) {
+        return res.status(400).send({errorMsg: error.details[0].message});
+    }
+
+    const salt = await bcrypt.genSalt(Number(process.env.SALT));
+
+    const hashPassword = await bcrypt.hash(req.body.password, salt);
+
+    await new User({...req.body, password: hashPassword}).save();
+    res.status(201).send({successMsg: "User Registered successfully"})
   } catch (error) {
-    res.send({ errorMsg: error });
+    res.status(500).send({ errorMsg: error });
   }
 });
 
 app.post('/login', async (req, res) => {
   // console.log(req.body);
   try {
-    let result = false;
-    let userNameLogin = "";
-    users.map((val) => {
-      const { email, password, userName } = val;
-      if (email === req.body.email && password === req.body.password){
-        result = true;
-        userNameLogin = userName;
-      }
-      return '';
-    });
-    if (result) {
-      res.status(201).send({ successMsg: `Welcome ${req.body.email}`, data: userNameLogin });
-    } else {
-      res.send({ errMsg: `User Not Found` });
+    const {error} = validateLogin(req.body);
+    if (error) {
+        return res.status(400).send({errorMsg: error.details[0].message});
     }
+
+    const user = await User.findOne({email: req.body.email});
+    if (!user) {
+        return res.status(401).send({errorMsg: "Invalid Email or Password"})
+    }
+
+    const validPassword = await bcrypt.compare(req.body.password, user.password);
+    if (!validPassword) {
+        return res.status(401).send({errorMsg: "Invalid Email or Password"})
+    }
+
+    const token = user.generateAuthToken();
+    res.status(200).send({data:token, successMsg: "Logged in successfully"});
   } catch (error) {
     res.send({ errorMsg: error });
   }
