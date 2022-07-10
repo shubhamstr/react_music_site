@@ -44,6 +44,17 @@ const Login = (props) => {
     }
   };
 
+  useEffect(()=>{
+    const token = localStorage.getItem("rest-music-site");
+    if(token){
+      props.setIsAuth(true);
+      history("/dashboard");
+    }else{
+      // localStorage.removeItem("rest-music-site");
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  },[]);
+
   return (
     <div className="container">
       <div className="row">

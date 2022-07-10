@@ -41,7 +41,7 @@ const Navbar = (props) => {
                 <BsFillPersonFill className="mx-1" />
                 {props.user}
               </p>
-              <Link to="/" className="btn btn-outline-danger btn-sm">
+              <Link to="/logout" className="btn btn-outline-danger btn-sm">
                 Log Out
               </Link>
             </form>
