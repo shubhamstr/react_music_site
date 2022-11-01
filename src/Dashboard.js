@@ -13,7 +13,7 @@ const Dashboard = (props) => {
     if (token) {
       var decoded = jwt_decode(token);
       console.log(decoded);
-      setUser(decoded.userName);
+      setUser(decoded.firstName);
     } else {
       localStorage.removeItem("rest-music-site");
       props.setIsAuth(false);

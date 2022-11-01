@@ -28,6 +28,7 @@ app.post('/register', async (req, res) => {
   // console.log(req.body);
   try {
     const {error} = validateRegister(req.body);
+    // console.log(error);
     if (error) {
         return res.send({errorMsg: error.details[0].message});
     }
@@ -35,9 +36,11 @@ app.post('/register', async (req, res) => {
     const salt = await bcrypt.genSalt(Number(process.env.SALT));
 
     const hashPassword = await bcrypt.hash(req.body.password, salt);
-
-    await new User({...req.body, password: hashPassword}).save();
-    res.status(201).send({successMsg: "User Registered successfully"})
+    // console.log(hashPassword);
+    const result = await new User({...req.body, password: hashPassword}).save();
+    console.log(result);
+    
+    res.send({successMsg: "User Registered successfully"});
   } catch (error) {
     res.status(500).send({ errorMsg: error });
   }

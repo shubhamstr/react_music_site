@@ -7,7 +7,8 @@ const REGISTER_URL = "./register";
 axios.defaults.baseURL = "http://localhost:3600";
 
 const Register = (props) => {
-  const [userName, setUserName] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -20,8 +21,10 @@ const Register = (props) => {
       setEmail(e.target.value);
     } else if (e.target.name === "password") {
       setPassword(e.target.value);
-    } else if (e.target.name === "userName") {
-      setUserName(e.target.value);
+    } else if (e.target.name === "firstName") {
+      setFirstName(e.target.value);
+    } else if (e.target.name === "lastName") {
+      setLastName(e.target.value);
     }
   };
 
@@ -31,7 +34,8 @@ const Register = (props) => {
       const resp = await axios.post(REGISTER_URL, {
         email: email,
         password: password,
-        userName: userName,
+        firstName: firstName,
+        lastName: lastName,
       });
       console.log(resp.data);
       const { errMsg, successMsg } = resp.data;
@@ -68,16 +72,29 @@ const Register = (props) => {
               <hr />
               <form>
                 <div className="mb-3">
-                  <label htmlFor="userName" className="form-label">
-                    userName
+                  <label htmlFor="firstName" className="form-label">
+                    First Name
                   </label>
                   <input
                     type="text"
                     onChange={onchange}
                     className="form-control"
-                    id="userName"
-                    name="userName"
-                    aria-describedby="userNameHelp"
+                    id="firstName"
+                    name="firstName"
+                    aria-describedby="firstNameHelp"
+                  />
+                </div>
+                <div className="mb-3">
+                  <label htmlFor="lastName" className="form-label">
+                    Last Name
+                  </label>
+                  <input
+                    type="text"
+                    onChange={onchange}
+                    className="form-control"
+                    id="lastName"
+                    name="lastName"
+                    aria-describedby="lastNameHelp"
                   />
                 </div>
                 <div className="mb-3">
