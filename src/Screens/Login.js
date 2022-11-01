@@ -3,6 +3,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
+import { Form, FormGroup, Input, Label, Button } from "reactstrap";
 import Swal from "sweetalert2";
 
 const LOGIN_URL = "./login";
@@ -64,43 +65,30 @@ const Login = (props) => {
             <p className="text-danger text-center">{errMsg}</p>
             <h2 className="text-center">Login</h2>
             <hr />
-            <form>
-              <div className="mb-3">
-                <label htmlFor="email" className="form-label">
-                  Email address
-                </label>
-                <input
-                  type="email"
-                  onChange={onchange}
-                  className="form-control"
+
+            <Form>
+              <FormGroup floating>
+                <Input
                   id="email"
                   name="email"
-                  aria-describedby="emailHelp"
-                />
-                <div id="emailHelp" className="form-text">
-                  We'll never share your email with anyone else.
-                </div>
-              </div>
-              <div className="mb-3">
-                <label htmlFor="password" className="form-label">
-                  Password
-                </label>
-                <input
-                  type="password"
+                  placeholder="Email Address"
+                  type="email"
                   onChange={onchange}
-                  className="form-control"
+                />
+                <Label for="email">Email Address</Label>
+              </FormGroup>{" "}
+              <FormGroup floating>
+                <Input
                   id="password"
                   name="password"
+                  placeholder="Password"
+                  type="password"
+                  onChange={onchange}
                 />
-              </div>
+                <Label for="password">Password</Label>
+              </FormGroup>{" "}
               <div className="text-center">
-                <button
-                  type="button"
-                  className="btn btn-primary"
-                  onClick={login}
-                >
-                  Login
-                </button>
+                <Button color="primary" onClick={login}>Login</Button>
                 <p className="mt-3 mb-0">Don't have an account</p>
                 <p>
                   <Link to="/register" className="text-white">
@@ -108,7 +96,7 @@ const Login = (props) => {
                   </Link>
                 </p>
               </div>
-            </form>
+            </Form>
           </div>
         </div>
       </div>
