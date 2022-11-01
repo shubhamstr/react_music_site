@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from "react";
-import Navbar from "./layout/Navbar";
+import Navbar from "../layout/Navbar";
 import { useNavigate } from "react-router-dom";
 import jwt_decode from "jwt-decode";
 

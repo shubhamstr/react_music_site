@@ -1,9 +1,9 @@
 /* eslint-disable no-unused-vars */
 import "./App.css";
-import Login from "./Login";
-import Register from "./Register";
-import Logout from "./Logout";
-import Dashboard from "./Dashboard";
+import Login from "./Screens/Login";
+import Register from "./Screens/Register";
+import Logout from "./Screens/Logout";
+import Dashboard from "./Screens/Dashboard";
 import { useState } from "react";
 import {
   BrowserRouter as Router,

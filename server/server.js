@@ -14,7 +14,7 @@ connection();
 // middlewares 
 app.use(express.json());
 app.use(cors({
-  origin: 'http://localhost:3500',
+  origin: process.env.BASE_URL,
 }));
 
 const port = process.env.PORT || 3600;
@@ -39,7 +39,7 @@ app.post('/register', async (req, res) => {
     // console.log(hashPassword);
     const result = await new User({...req.body, password: hashPassword}).save();
     console.log(result);
-    
+
     res.send({successMsg: "User Registered successfully"});
   } catch (error) {
     res.status(500).send({ errorMsg: error });
