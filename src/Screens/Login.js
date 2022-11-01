@@ -61,7 +61,7 @@ const Login = (props) => {
     <div className="container">
       <div className="row">
         <div className="col-md-4 offset-md-4 mt-5">
-          <div className="card p-5 bg-info">
+          <div className="card p-5 card_bg_color">
             <p className="text-danger text-center">{errMsg}</p>
             <h2 className="text-center">Login</h2>
             <hr />
@@ -91,7 +91,7 @@ const Login = (props) => {
                 <Button color="primary" onClick={login}>Login</Button>
                 <p className="mt-3 mb-0">Don't have an account</p>
                 <p>
-                  <Link to="/register" className="text-white">
+                  <Link to="/register" className="">
                     Click to Register
                   </Link>
                 </p>

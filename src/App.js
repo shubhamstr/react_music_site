@@ -18,15 +18,17 @@ function App() {
   const [isAuth, setIsAuth] = useState(false);
 
   return (
-    <Router>
-      <Routes>
-        <Route exact path="/" element={<Login isAuth={isAuth} setIsAuth={setIsAuth} />} />
-        <Route exact path="/register" element={<Register isAuth={isAuth} setIsAuth={setIsAuth} />} />
-        <Route exact path="/login" element={<Login isAuth={isAuth} setIsAuth={setIsAuth} />} />
-        <Route exact path="/dashboard" element={<Dashboard isAuth={isAuth} setIsAuth={setIsAuth} />} />
-        <Route exact path="/logout" element={<Logout isAuth={isAuth} setIsAuth={setIsAuth} />} />
-      </Routes>
-    </Router>
+    <div className='body_height_bg_gradient'>
+      <Router>
+        <Routes>
+          <Route exact path="/" element={<Login isAuth={isAuth} setIsAuth={setIsAuth} />} />
+          <Route exact path="/register" element={<Register isAuth={isAuth} setIsAuth={setIsAuth} />} />
+          <Route exact path="/login" element={<Login isAuth={isAuth} setIsAuth={setIsAuth} />} />
+          <Route exact path="/dashboard" element={<Dashboard isAuth={isAuth} setIsAuth={setIsAuth} />} />
+          <Route exact path="/logout" element={<Logout isAuth={isAuth} setIsAuth={setIsAuth} />} />
+        </Routes>
+      </Router>
+    </div>
   );
 }
 

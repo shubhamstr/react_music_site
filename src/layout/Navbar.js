@@ -5,7 +5,7 @@ import { BsFillPersonFill } from "react-icons/bs";
 
 const Navbar = (props) => {
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-info">
+    <nav className="navbar navbar-expand-lg navbar-light navbar_bg_color">
       <div className="container-fluid">
         <Link to="/dashboard" className="navbar-brand">
           React Music Site
@@ -40,7 +40,7 @@ const Navbar = (props) => {
                 <BsFillPersonFill className="mx-1" />
                 {props.user}
               </p>
-              <Link to="/logout" className="btn btn-outline-danger btn-sm">
+              <Link to="/logout" className="btn btn-outline-info text-dark btn-sm">
                 Log Out
               </Link>
             </form>

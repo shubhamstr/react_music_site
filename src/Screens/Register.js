@@ -58,7 +58,7 @@ const Register = (props) => {
       <div className="row">
         <div className="col-md-4 offset-md-4 mt-5">
           {success ? (
-            <div className="card p-5 bg-info">
+            <div className="card p-5 card_bg_color">
               <p className="text-white text-center">{successMsg}!</p>
               <div className="text-center">
                 <Link to="/login" className="btn btn-primary text-white">
@@ -67,7 +67,7 @@ const Register = (props) => {
               </div>
             </div>
           ) : (
-            <div className="card p-5 bg-info">
+            <div className="card p-5 card_bg_color">
               <p className="text-danger text-center">{errMsg}</p>
               <h2 className="text-center">Register</h2>
               <hr />
@@ -116,7 +116,7 @@ const Register = (props) => {
                   <Button color="primary" onClick={register}>Register</Button>
                   <p className="mt-3 mb-0">Already have an account</p>
                   <p>
-                    <Link to="/login" className="text-white">
+                    <Link to="/login" className="">
                       Click to Login
                     </Link>
                   </p>
