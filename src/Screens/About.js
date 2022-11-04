@@ -1,10 +1,9 @@
 import React from "react";
-import Navbar from "../layout/Navbar";
 
 const About = () => {
   return (
     <div className="container-fluid px-0">
-      <Navbar />
+      <h1 className="text-center">About</h1>
     </div>
   );
 };

@@ -4,7 +4,7 @@ import jwt_decode from "jwt-decode";
 import { Link } from "react-router-dom";
 import { BsFillPersonFill } from "react-icons/bs";
 
-const Navbar = (props) => {
+const Navbar = () => {
   const [user, setUser] = useState("")
 
   useEffect(() => {

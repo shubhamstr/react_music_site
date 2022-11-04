@@ -6,6 +6,7 @@ import Register from "./Screens/Register";
 import Logout from "./Screens/Logout";
 import Dashboard from "./Screens/Dashboard";
 import About from "./Screens/About";
+import Layout from "./Compo/Layout";
 import { useState, useEffect } from "react";
 import jwt_decode from "jwt-decode";
 import {
@@ -21,9 +22,13 @@ function App() {
 
   const Protected = ({ isLoggedIn, children }) => {
     if (!isLoggedIn) {
-      return <Navigate to="/" replace />;
+      return (
+        <Layout>
+          <Navigate to="/" replace />
+        </Layout>
+      );
     }
-    return children;
+    return <Layout>{children}</Layout>;
   };
 
   useEffect(() => {
@@ -35,8 +40,8 @@ function App() {
       localStorage.removeItem("rest-music-site");
       setIsAuth(false);
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div className="body_height_bg_gradient">
