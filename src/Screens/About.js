@@ -1,9 +1,9 @@
 /* eslint-disable no-unused-vars */
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "../layout/Navbar";
 import { useNavigate } from "react-router-dom";
 
-const Dashboard = (props) => {
+const About = (props) => {
   const history = useNavigate();
   const [user, setUser] = useState("")
   
@@ -14,4 +14,4 @@ const Dashboard = (props) => {
   );
 };
 
-export default Dashboard;
+export default About;
