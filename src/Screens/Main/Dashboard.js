@@ -1,10 +1,38 @@
 import React from "react";
+import {
+  Form,
+  FormGroup,
+  Input,
+  Label,
+  Button,
+  Container,
+  Row,
+  Col,
+} from "reactstrap";
 
 const Dashboard = () => {
   return (
-    <div className="container-fluid px-0">
-    <h1 className="text-center">Dashboard</h1>
-    </div>
+    <Container fluid>
+      <Row>
+        <Col
+          sm={{
+            size: 6,
+            offset: 3,
+          }}
+          className="mt-3"
+        >
+          <Form action="/upload" method="post" encType="multipart/form-data">
+            <FormGroup>
+              <Label for="fileInput" className="text-white">Upload Music (MP3 Type Only)</Label>
+              <Input id="fileInput" name="file" type="file" />
+            </FormGroup>
+            <FormGroup className="text-center">
+              <Button color="primary">Upload</Button>
+            </FormGroup>
+          </Form>
+        </Col>
+      </Row>
+    </Container>
   );
 };
 

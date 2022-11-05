@@ -31,7 +31,7 @@ const Login = (props) => {
       email: email,
       password: password,
     });
-    console.log(resp);
+    // console.log(resp);
     console.log(resp.data);
     const { errorMsg, successMsg, data } = resp.data;
     if (successMsg) {
@@ -53,8 +53,8 @@ const Login = (props) => {
     const resp = await axios.post(VERIFY_URL, {
       email: email,
     });
-    console.log(resp);
-    console.log(resp.data);
+    // console.log(resp);
+    // console.log(resp.data);
     const { errorMsg, successMsg, data } = resp.data;
     if (successMsg) {
       props.setIsAuth(true);
