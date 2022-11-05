@@ -18,12 +18,20 @@ app.use(cors({
 const port = process.env.PORT || 3600;
 
 app.get('/', (req, res) => {
-  res.send(`Example app listening on port http://localhost:${port}`)
+  res.send(`server is running`)
 })
 
-const authRouter = require('./routes/authRouter');
 
+
+const authRouter = require('./routes/authRouter');
 app.use("/auth", authRouter);
+
+
+const songsRouter = require('./routes/songsRouter');
+app.use("/songs", songsRouter);
+
+
+
 
 app.listen(port, () => {
   console.log(`Example app listening on port http://localhost:${port}`)

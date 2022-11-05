@@ -21,7 +21,7 @@ const Dashboard = () => {
           }}
           className="mt-3"
         >
-          <Form action="/upload" method="post" encType="multipart/form-data">
+          <Form action="http://localhost:3600/songs/upload" method="post" encType="multipart/form-data">
             <FormGroup>
               <Label for="fileInput" className="text-white">Upload Music (MP3 Type Only)</Label>
               <Input id="fileInput" name="file" type="file" />
