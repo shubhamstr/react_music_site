@@ -11,3 +11,11 @@
 .navbar_bg_color {
   background-color: aqua;
 }
+
+.footer_bg_color {
+  background-color: aqua;
+}
+
+.content {
+  min-height: 650px;
+}
