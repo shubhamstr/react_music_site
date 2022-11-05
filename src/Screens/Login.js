@@ -9,7 +9,7 @@ import Swal from "sweetalert2";
 
 const LOGIN_URL = "./login";
 const VERIFY_URL = "./verify-url";
-axios.defaults.baseURL = "http://localhost:3600";
+axios.defaults.baseURL = "http://localhost:3600/auth";
 const Login = (props) => {
   const history = useNavigate();
   const [email, setEmail] = useState("");

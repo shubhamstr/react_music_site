@@ -23,8 +23,11 @@ app.get('/', (req, res) => {
   res.send(`Example app listening on port http://localhost:${port}`)
 })
 
+// const authRouter = require('./routes/authRouter');
 
-app.post('/register', async (req, res) => {
+// app.use("/auth", authRouter);
+
+app.post('/auth/register', async (req, res) => {
   // console.log(req.body);
   try {
     const {error} = validateRegister(req.body);
@@ -46,7 +49,7 @@ app.post('/register', async (req, res) => {
   }
 });
 
-app.post('/login', async (req, res) => {
+app.post('/auth/login', async (req, res) => {
   // console.log(req.body);
   try {
     const {error} = validateLogin(req.body);
@@ -71,8 +74,8 @@ app.post('/login', async (req, res) => {
   }
 });
 
-app.post('/verify-url', async (req, res) => {
-  console.log(req.body);
+app.post('/auth/verify-url', async (req, res) => {
+  // console.log(req.body);
   try {
 
     const user = await User.findOne({email: req.body.email});
