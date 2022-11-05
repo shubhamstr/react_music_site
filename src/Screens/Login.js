@@ -2,11 +2,13 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import jwt_decode from "jwt-decode";
 import { Link, useNavigate } from "react-router-dom";
 import { Form, FormGroup, Input, Label, Button } from "reactstrap";
 import Swal from "sweetalert2";
 
 const LOGIN_URL = "./login";
+const VERIFY_URL = "./verify-url";
 axios.defaults.baseURL = "http://localhost:3600";
 const Login = (props) => {
   const history = useNavigate();
@@ -46,13 +48,35 @@ const Login = (props) => {
     }
   };
 
-  useEffect(() => {
-    const token = localStorage.getItem("rest-music-site");
-    if (token) {
+  const verifyUser = async (email) => {
+    // console.log(email)
+    const resp = await axios.post(VERIFY_URL, {
+      email: email,
+    });
+    console.log(resp);
+    console.log(resp.data);
+    const { errorMsg, successMsg, data } = resp.data;
+    if (successMsg) {
       props.setIsAuth(true);
       history("/dashboard");
     } else {
-      // localStorage.removeItem("rest-music-site");
+      setErrMsg(errorMsg);
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: errorMsg,
+      });
+      localStorage.removeItem("rest-music-site");
+    }
+  }
+
+  useEffect(() => {
+    const token = localStorage.getItem("rest-music-site");
+    if (token) {
+      var decoded = jwt_decode(token);
+      verifyUser(decoded.email);
+      // props.setIsAuth(true);
+      // history("/dashboard");
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

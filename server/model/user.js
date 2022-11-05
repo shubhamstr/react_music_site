@@ -52,7 +52,7 @@ Qw6HXRrWBnHJDUs5CHQUt7qt
 -----END PRIVATE KEY-----`;
 
 userSchema.methods.generateAuthToken = function () {
-    const token = jwt.sign({_id: this._id, firstName: this.firstName}, key, {expiresIn: "1d"});
+    const token = jwt.sign({_id: this._id, firstName: this.firstName, email: this.email }, key, {expiresIn: "1d"});
     return token;
 }
 

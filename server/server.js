@@ -71,6 +71,21 @@ app.post('/login', async (req, res) => {
   }
 });
 
+app.post('/verify-url', async (req, res) => {
+  console.log(req.body);
+  try {
+
+    const user = await User.findOne({email: req.body.email});
+    if (!user) {
+        return res.send({errorMsg: "User Not Found"})
+    }
+
+    res.status(200).send({successMsg: "User Found"});
+  } catch (error) {
+    res.send({ errorMsg: error });
+  }
+});
+
 app.listen(port, () => {
   console.log(`Example app listening on port http://localhost:${port}`)
 })
