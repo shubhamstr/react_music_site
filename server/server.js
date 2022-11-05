@@ -14,6 +14,7 @@ app.use(express.json());
 app.use(cors({
   origin: process.env.BASE_URL,
 }));
+app.use('/public',express.static('public/uploads'));
 
 const port = process.env.PORT || 3600;
 

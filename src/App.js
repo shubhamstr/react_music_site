@@ -35,7 +35,7 @@ function App() {
     const token = localStorage.getItem("rest-music-site");
     if (token) {
       var decoded = jwt_decode(token);
-      console.log(decoded);
+      // console.log(decoded);
     } else {
       localStorage.removeItem("rest-music-site");
       setIsAuth(false);
