@@ -4,8 +4,8 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { Form, FormGroup, Input, Label, Button } from "reactstrap";
 
-const REGISTER_URL = "./register";
-axios.defaults.baseURL = "http://localhost:3600/auth";
+const REGISTER_URL = "./auth/register";
+axios.defaults.baseURL = "http://localhost:3600";
 
 const Register = (props) => {
   const [firstName, setFirstName] = useState("");

@@ -7,9 +7,9 @@ import { Link, useNavigate } from "react-router-dom";
 import { Form, FormGroup, Input, Label, Button } from "reactstrap";
 import Swal from "sweetalert2";
 
-const LOGIN_URL = "./login";
-const VERIFY_URL = "./verify-url";
-axios.defaults.baseURL = "http://localhost:3600/auth";
+const LOGIN_URL = "./auth/login";
+const VERIFY_URL = "./auth/verify-url";
+axios.defaults.baseURL = "http://localhost:3600";
 const Login = (props) => {
   const history = useNavigate();
   const [email, setEmail] = useState("");
