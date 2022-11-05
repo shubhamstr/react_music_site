@@ -2,13 +2,12 @@ import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
-import ReactPlayer from "react-player/youtube";
 import {
   ListGroup,
   ListGroupItem,
-  Input,
-  Label,
-  Button,
+  // Input,
+  // Label,
+  // Button,
   Container,
   Row,
   Col,
@@ -56,14 +55,23 @@ const Songs = () => {
               songsList.length !== 0 &&
               songsList.map((song, index) => {
                 return (
-                  <ListGroupItem key={index} className="d-flex justify-content-between">
-                    <p>{song}</p>
-                    <Button color="primary" onClick={()=> {
-                      window.open(`http://localhost:3600/public/${song}`);
-                    }}>Play</Button>
-                    {/* <ReactPlayer
-                      playing url={['file-1667631053375-253879582.mp3']} 
-                    /> */}
+                  <ListGroupItem key={index}>
+                    <Col sm="12" className="d-flex justify-content-between align-items-center">
+                      <p className="mb-0">{song}</p>
+                      {/* <Button
+                        color="primary"
+                        onClick={() => {
+                          window.open(`http://localhost:3600/public/${song}`);
+                        }}
+                      >
+                        Play
+                      </Button> */}
+                      <audio controls>
+                        <source src={`http://localhost:3600/public/${song}`} type="audio/ogg" />
+                        {/* <source src="horse.mp3" type="audio/mpeg" /> */}
+                        Your browser does not support the audio tag.
+                      </audio>
+                    </Col>
                   </ListGroupItem>
                 );
               })}
