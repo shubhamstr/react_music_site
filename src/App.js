@@ -5,7 +5,7 @@ import Login from "./Screens/Login";
 import Register from "./Screens/Register";
 import Logout from "./Screens/Logout";
 import Dashboard from "./Screens/Main/Dashboard";
-import About from "./Screens/Main/About";
+import Songs from "./Screens/Main/Songs";
 import Layout from "./Compo/Layout";
 import { useState, useEffect } from "react";
 import jwt_decode from "jwt-decode";
@@ -79,10 +79,10 @@ function App() {
           />
           <Route
             exact
-            path="/about"
+            path="/songs"
             element={
               <Protected isLoggedIn={isAuth}>
-                <About isAuth={isAuth} setIsAuth={setIsAuth} />
+                <Songs isAuth={isAuth} setIsAuth={setIsAuth} />
               </Protected>
             }
           />
