@@ -1,18 +1,14 @@
 import React from "react"
 import Header from "./Header"
 import Footer from "../Compo/Footer"
-import { Container, Row, Col } from "reactstrap"
+import { Container } from "reactstrap"
 
 const Layout = ({ children }) => {
   return (
-    <Container fluid>
-      <Row>
-        <Col className="bg-light border" xs="12">
-          <Header />
-          {children}
-          <Footer />
-        </Col>
-      </Row>
+    <Container fluid className="px-0">
+      <Header />
+      {children}
+      <Footer />
     </Container>
   )
 }
