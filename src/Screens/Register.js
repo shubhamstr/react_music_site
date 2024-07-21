@@ -1,8 +1,24 @@
+/* eslint-disable no-unused-vars */
 import React from "react"
 import { useState } from "react"
 import axios from "axios"
 import { Link } from "react-router-dom"
-import { Form, FormGroup, Input, Label, Button } from "reactstrap"
+import {
+  Form,
+  FormGroup,
+  Input,
+  Label,
+  Button,
+  Container,
+  Row,
+  Col,
+  Card,
+  CardTitle,
+  CardBody,
+  CardSubtitle,
+  CardText,
+  CardLink,
+} from "reactstrap"
 import { SERVER_URL } from "../constants"
 
 const REGISTER_URL = "./auth/register"
@@ -55,23 +71,29 @@ const Register = (props) => {
   }
 
   return (
-    <div className="container">
-      <div className="row">
-        <div className="col-md-4 offset-md-4 mt-5">
-          {success ? (
-            <div className="card p-5 card_bg_color">
-              <p className="text-white text-center">{successMsg}!</p>
-              <div className="text-center">
-                <Link to="/login" className="btn btn-primary text-white">
-                  Login
-                </Link>
-              </div>
-            </div>
-          ) : (
-            <div className="card p-5 card_bg_color">
-              <p className="text-danger text-center">{errMsg}</p>
-              <h2 className="text-center">Register</h2>
-              <hr />
+    <Container className="bg-dark1 doc_body" fluid>
+      <Row>
+        <Col
+          md={{
+            offset: 4,
+            size: 4,
+          }}
+          className="d-flex justify-content-center align-items-center vh-100"
+        >
+          <Card
+            style={{
+              width: "25rem",
+            }}
+          >
+            <CardBody>
+              <CardTitle tag="h3" className="text-center">
+                Register
+              </CardTitle>
+              {/* <CardSubtitle className="mb-2 text-muted" tag="h6">
+                Card subtitle
+              </CardSubtitle> */}
+            </CardBody>
+            <CardBody>
               <Form>
                 <FormGroup floating>
                   <Input
@@ -113,23 +135,23 @@ const Register = (props) => {
                   />
                   <Label for="password">Password</Label>
                 </FormGroup>{" "}
-                <div className="text-center">
-                  <Button color="primary" onClick={register}>
-                    Register
-                  </Button>
-                  <p className="mt-3 mb-0">Already have an account</p>
-                  <p>
+                <Row>
+                  <Col md="12" className="text-center">
+                    <Button color="primary" onClick={register}>
+                      Register
+                    </Button>
+                    <CardText>Already have an account</CardText>
                     <Link to="/login" className="">
                       Click to Login
                     </Link>
-                  </p>
-                </div>
+                  </Col>
+                </Row>
               </Form>
-            </div>
-          )}
-        </div>
-      </div>
-    </div>
+            </CardBody>
+          </Card>
+        </Col>
+      </Row>
+    </Container>
   )
 }
 

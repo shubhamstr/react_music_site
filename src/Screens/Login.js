@@ -109,7 +109,7 @@ const Login = (props) => {
         >
           <Card
             style={{
-              width: "18rem",
+              width: "22rem",
             }}
           >
             <CardBody>
@@ -142,13 +142,21 @@ const Login = (props) => {
                   />
                   <Label for="password">Password</Label>
                 </FormGroup>{" "}
-                <Button color="primary" onClick={login}>
-                  Login
-                </Button>
-                <CardText>Don't have an account</CardText>
-                <Link to="/register" className="">
-                  Click to Register
-                </Link>
+                <Row>
+                  <Col md="12" className="text-center">
+                    <Button
+                      color="primary"
+                      className="text-center"
+                      onClick={login}
+                    >
+                      Login
+                    </Button>
+                    <CardText>Don't have an account</CardText>
+                    <Link to="/register" className="">
+                      Click to Register
+                    </Link>
+                  </Col>
+                </Row>
               </Form>
             </CardBody>
           </Card>
