@@ -1,13 +1,13 @@
-import React from "react";
+import React from 'react'
 
 const Footer = () => {
   return (
-    <div>
-      <footer className="footer_bg_color d-flex justify-content-center">
-        <h5 className="my-2">Footer</h5>
-      </footer>
-    </div>
-  );
-};
+    <footer class="footer mt-auto py-3 bg-light mt-auto">
+      <div class="container">
+        <span class="text-muted">Place sticky footer content here.</span>
+      </div>
+    </footer>
+  )
+}
 
 export default Footer;
