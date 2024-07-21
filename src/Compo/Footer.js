@@ -1,13 +1,14 @@
-import React from 'react'
+import React from "react"
+import { Row, Col } from "reactstrap"
 
 const Footer = () => {
   return (
-    <footer class="footer mt-auto py-3 bg-light mt-auto">
-      <div class="container">
-        <span class="text-muted">Place sticky footer content here.</span>
-      </div>
-    </footer>
+    <Row className="mx-0 bg-dark">
+      <Col xs="12" className="text-center text-white my-2">
+        <span>Made with Love by shubhamstr</span>
+      </Col>
+    </Row>
   )
 }
 
-export default Footer;
+export default Footer
