@@ -1,57 +1,58 @@
-import React from "react";
-import { useState } from "react";
-import axios from "axios";
-import { Link } from "react-router-dom";
-import { Form, FormGroup, Input, Label, Button } from "reactstrap";
+import React from "react"
+import { useState } from "react"
+import axios from "axios"
+import { Link } from "react-router-dom"
+import { Form, FormGroup, Input, Label, Button } from "reactstrap"
+import { SERVER_URL } from "../constants"
 
-const REGISTER_URL = "./auth/register";
-axios.defaults.baseURL = "http://localhost:3600";
+const REGISTER_URL = "./auth/register"
+axios.defaults.baseURL = SERVER_URL
 
 const Register = (props) => {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [firstName, setFirstName] = useState("")
+  const [lastName, setLastName] = useState("")
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
 
-  const [errMsg, setErrMsg] = useState("");
-  const [successMsg, setSuccessMsg] = useState("");
-  const [success, setSuccess] = useState(false);
+  const [errMsg, setErrMsg] = useState("")
+  const [successMsg, setSuccessMsg] = useState("")
+  const [success, setSuccess] = useState(false)
 
   const onchange = (e) => {
     if (e.target.name === "email") {
-      setEmail(e.target.value);
+      setEmail(e.target.value)
     } else if (e.target.name === "password") {
-      setPassword(e.target.value);
+      setPassword(e.target.value)
     } else if (e.target.name === "firstName") {
-      setFirstName(e.target.value);
+      setFirstName(e.target.value)
     } else if (e.target.name === "lastName") {
-      setLastName(e.target.value);
+      setLastName(e.target.value)
     }
-  };
+  }
 
   const register = async (e) => {
-    e.preventDefault();
+    e.preventDefault()
     try {
       const resp = await axios.post(REGISTER_URL, {
         email: email,
         password: password,
         firstName: firstName,
         lastName: lastName,
-      });
-      console.log(resp.data);
-      const { errMsg, successMsg } = resp.data;
+      })
+      console.log(resp.data)
+      const { errMsg, successMsg } = resp.data
       if (successMsg) {
-        setSuccess(true);
-        setSuccessMsg(successMsg);
+        setSuccess(true)
+        setSuccessMsg(successMsg)
       } else {
-        setErrMsg(errMsg);
+        setErrMsg(errMsg)
       }
     } catch (err) {
       if (!err?.resp) {
-        setErrMsg("No Server Response");
+        setErrMsg("No Server Response")
       }
     }
-  };
+  }
 
   return (
     <div className="container">
@@ -113,7 +114,9 @@ const Register = (props) => {
                   <Label for="password">Password</Label>
                 </FormGroup>{" "}
                 <div className="text-center">
-                  <Button color="primary" onClick={register}>Register</Button>
+                  <Button color="primary" onClick={register}>
+                    Register
+                  </Button>
                   <p className="mt-3 mb-0">Already have an account</p>
                   <p>
                     <Link to="/login" className="">
@@ -127,7 +130,7 @@ const Register = (props) => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Register;
+export default Register

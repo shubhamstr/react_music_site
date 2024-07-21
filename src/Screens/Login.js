@@ -21,10 +21,11 @@ import {
   CardLink,
 } from "reactstrap"
 import Swal from "sweetalert2"
+import { SERVER_URL } from "../constants"
 
 const LOGIN_URL = "./auth/login"
 const VERIFY_URL = "./auth/verify-url"
-axios.defaults.baseURL = "http://localhost:3600"
+axios.defaults.baseURL = SERVER_URL
 const Login = (props) => {
   const history = useNavigate()
   const [email, setEmail] = useState("")
@@ -112,7 +113,9 @@ const Login = (props) => {
             }}
           >
             <CardBody>
-              <CardTitle tag="h3" className="text-center">Login</CardTitle>
+              <CardTitle tag="h3" className="text-center">
+                Login
+              </CardTitle>
               {/* <CardSubtitle className="mb-2 text-muted" tag="h6">
                 Card subtitle
               </CardSubtitle> */}

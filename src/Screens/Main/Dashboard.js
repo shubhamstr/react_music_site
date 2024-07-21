@@ -1,4 +1,4 @@
-import React from "react";
+import React from "react"
 import {
   Form,
   FormGroup,
@@ -8,7 +8,8 @@ import {
   Container,
   Row,
   Col,
-} from "reactstrap";
+} from "reactstrap"
+import { SERVER_URL } from "../../constants"
 
 const Dashboard = () => {
   return (
@@ -21,9 +22,15 @@ const Dashboard = () => {
           }}
           className="mt-3"
         >
-          <Form action="http://localhost:3600/songs/upload" method="post" encType="multipart/form-data">
+          <Form
+            action={`${SERVER_URL}/songs/upload`}
+            method="post"
+            encType="multipart/form-data"
+          >
             <FormGroup>
-              <Label for="fileInput" className="text-white">Upload Music (MP3 Type Only)</Label>
+              <Label for="fileInput" className="text-white">
+                Upload Music (MP3 Type Only)
+              </Label>
               <Input id="fileInput" name="file" type="file" />
             </FormGroup>
             <FormGroup className="text-center">
@@ -33,7 +40,7 @@ const Dashboard = () => {
         </Col>
       </Row>
     </Container>
-  );
-};
+  )
+}
 
-export default Dashboard;
+export default Dashboard
