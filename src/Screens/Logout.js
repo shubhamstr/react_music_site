@@ -5,7 +5,7 @@ function Logout(props) {
   const history = useNavigate();
 
   useEffect(() => {
-    localStorage.removeItem("rest-music-site");
+    localStorage.removeItem("music-site-token");
     props.setIsAuth(false);
     history("/");
   // eslint-disable-next-line react-hooks/exhaustive-deps

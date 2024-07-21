@@ -32,12 +32,12 @@ function App() {
   };
 
   useEffect(() => {
-    const token = localStorage.getItem("rest-music-site");
+    const token = localStorage.getItem("music-site-token");
     if (token) {
       var decoded = jwt_decode(token);
       // console.log(decoded);
     } else {
-      localStorage.removeItem("rest-music-site");
+      localStorage.removeItem("music-site-token");
       setIsAuth(false);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps

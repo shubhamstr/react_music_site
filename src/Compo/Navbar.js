@@ -8,7 +8,7 @@ const Navbar = () => {
   const [user, setUser] = useState("")
 
   useEffect(() => {
-    const token = localStorage.getItem("rest-music-site");
+    const token = localStorage.getItem("music-site-token");
     if (token) {
       var decoded = jwt_decode(token);
       // console.log(decoded);

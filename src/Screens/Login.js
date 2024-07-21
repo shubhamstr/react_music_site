@@ -35,7 +35,7 @@ const Login = (props) => {
     console.log(resp.data);
     const { errorMsg, successMsg, data } = resp.data;
     if (successMsg) {
-      localStorage.setItem("rest-music-site", data);
+      localStorage.setItem("music-site-token", data);
       props.setIsAuth(true);
       history("/dashboard");
     } else {
@@ -66,12 +66,12 @@ const Login = (props) => {
         title: "Oops...",
         text: errorMsg,
       });
-      localStorage.removeItem("rest-music-site");
+      localStorage.removeItem("music-site-token");
     }
   }
 
   useEffect(() => {
-    const token = localStorage.getItem("rest-music-site");
+    const token = localStorage.getItem("music-site-token");
     if (token) {
       var decoded = jwt_decode(token);
       verifyUser(decoded.email);
