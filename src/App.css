@@ -1,8 +1,13 @@
 .doc_body {
   /* height: 100%; */
   height: 100vh;
-  background: rgb(2,0,36);
-  background: radial-gradient(circle, rgba(2,0,36,1) 0%, rgba(38,85,222,1) 0%, rgba(0,212,255,1) 70%);
+  background: rgb(2, 0, 36);
+  background: radial-gradient(
+    circle,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(38, 85, 222, 1) 0%,
+    rgba(0, 212, 255, 1) 70%
+  );
 }
 
 .card_bg_color {
@@ -15,8 +20,4 @@
 
 .footer_bg_color {
   background-color: aqua;
-}
-
-.content {
-  min-height: 650px;
 }
